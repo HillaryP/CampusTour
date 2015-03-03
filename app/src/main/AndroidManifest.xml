@@ -48,6 +48,8 @@
         </activity>
         <activity android:name=".GeoCameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name=".GeoCamContent"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
     </application>
 
 </manifest>
