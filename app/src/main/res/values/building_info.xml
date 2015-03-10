@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <location>
+        <title>Husky Union Building (HUB)</title>
+        <latitude>47.655762</latitude>
+        <longitude>-122.305437</longitude>
+        <short_description>The Husky Union Building is a fun place for students to meet, study, and play!</short_description>
+    </location>
+    <location>
+        <title>Mary Gates Hall</title>
+        <latitude>47.654929</latitude>
+        <longitude>-122.3082688</longitude>
+        <short_description>Mary Gates Hall is home to the Information School.</short_description>
+    </location>
+    <location>
+        <title>Drumheller Fountain</title>
+        <latitude>47.6538068</latitude>
+        <longitude>-122.307808</longitude>
+        <short_description>The beautiful Drumheller Fountain has been a staple of the UW campus since 1961.</short_description>
+    </location>
+</resources>
