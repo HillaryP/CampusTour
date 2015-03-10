@@ -1,39 +1,71 @@
 package edu.washington.prathh.campustour;
 
-import android.support.v4.app.Fragment;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
+import android.widget.ListView;
 
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends Fragment {
-    private static final String LAT = "latitude";
-    private static final String LON = "longitude";
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+import java.util.ArrayList;
+import java.util.List;
+
+public class MapsActivity extends FragmentActivity  {
+
+    private GoogleMap mMap;
+    private LocationManager locationManager;
+    private double latitude;
+    private double longitude;
+
+    // Define a listener that responds to location updates
+    private LocationListener locationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            MapsActivity.this.latitude = location.getLatitude();
+            MapsActivity.this.longitude = location.getLongitude();
+        }
+
+        public void onStatusChanged(String provider, int status, Bundle extras) {}
+        public void onProviderEnabled(String provider) {}
+        public void onProviderDisabled(String provider) {}
+    };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_maps, container, false);
-        return rootView;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps);
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        // Register the listener with the Location Manager to receive location updates
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        Log.i("MapsActivity", "Lat: " + this.latitude + " Long: " + this.longitude);
+        this.latitude = 47.655335;
+        this.longitude = -122.30352;
+        setUpMapIfNeeded();
+        populateList();
     }
 
-    public MapsActivity() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpMapIfNeeded();
     }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static MapsActivity newInstance() {
-        MapsActivity fragment = new MapsActivity();
-        return fragment;
+    public void populateList() {
+        ListView listView = (ListView) findViewById(R.id.listView);
+        List<ListItem> buildingList = new ArrayList<ListItem>();
+        buildingList.add(new ListItem("Mary Gates Hall"));
+        buildingList.add(new ListItem("The HUB"));
+        listView.setAdapter(new ListItemAdapter(this, R.layout.list_item, buildingList));
     }
 
     /**
@@ -55,8 +87,8 @@ public class MapsActivity extends Fragment {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            //mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    //.getMap();
+            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                    .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -64,13 +96,11 @@ public class MapsActivity extends Fragment {
         }
     }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(47.655335, -122.30352)).title("UW"));
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(this.latitude, this.longitude))
+                .title("Your current location"));
+        LatLng coords = new LatLng(this.latitude, this.longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 11.0f)); // 17.0f));
     }
 }

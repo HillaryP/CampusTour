@@ -3,13 +3,6 @@
     android:layout_height="fill_parent"
     android:id="@+id/framelayout" >
 
-    <ImageView
-        android:id="@+id/frameImage"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/cherry"
-        android:layout_gravity="center" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"

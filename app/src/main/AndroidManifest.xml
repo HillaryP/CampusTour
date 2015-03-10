@@ -55,14 +55,6 @@
             android:name=".GeoCamContent"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".CampusInfo"
-            android:label="@string/title_activity_campus_info"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.washington.prathh.campustour.MainActivity" />
-        </activity>
-        <activity
             android:name=".Content"
             android:label="@string/title_activity_content"
             android:parentActivityName=".MainActivity" >
