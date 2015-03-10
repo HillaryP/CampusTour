@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 public class GeoCamContent extends GeoCameraActivity {
-
     protected JSONArray poiData;
     protected boolean isLoading = false;
 
