@@ -151,6 +151,6 @@ public class MapsActivity extends FragmentActivity  {
                     .title(point.getBuildingName()));
         }
         LatLng coords = new LatLng(this.latitude, this.longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 14.0f)); // 17.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 12.0f)); // 17.0f));
     }
 }
