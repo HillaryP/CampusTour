@@ -28,9 +28,30 @@ public class ListItemAdapter extends ArrayAdapter {
     public View getView ( int position, View convertView, ViewGroup parent ) {
         convertView = (LinearLayout) inflater.inflate( resource, null );
         ListItem item = (ListItem) getItem( position );
-
         ImageView imageView = (ImageView) convertView.findViewById(R.id.image);
-        imageView.setImageResource(R.drawable.logo);
+
+        String category = item.getIcon();
+
+        // Need to credit <div>Icons made by <a href="http://www.flaticon.com/authors/icons8" title="Icons8">Icons8</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
+        // is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+        switch (category) {
+            case "library":
+                imageView.setImageResource(R.drawable.library);
+                break;
+            case "recreation":
+                imageView.setImageResource(R.drawable.recreation);
+                break;
+            case "hall":
+                imageView.setImageResource(R.drawable.hall);
+                break;
+            case "landmark":
+                imageView.setImageResource(R.drawable.landmark);
+                break;
+            default:
+                imageView.setImageResource(R.drawable.logo);
+                break;
+        }
+
         TextView itemString = (TextView) convertView.findViewById(R.id.building_name);
         itemString.setText(item.getBuildingName());
         return convertView;

@@ -62,10 +62,16 @@ public class MapsActivity extends FragmentActivity  {
 
     public void populateList() {
         ListView listView = (ListView) findViewById(R.id.listView);
-        List<ListItem> buildingList = new ArrayList<ListItem>();
-        buildingList.add(new ListItem("Mary Gates Hall"));
-        buildingList.add(new ListItem("The HUB"));
+        List<ListItem> buildingList = getNearbySites();
         listView.setAdapter(new ListItemAdapter(this, R.layout.list_item, buildingList));
+    }
+
+    public List<ListItem> getNearbySites() {
+        List<ListItem> buildingList = new ArrayList<>();
+        buildingList.add(new ListItem("Mary Gates Hall", "hall"));
+        buildingList.add(new ListItem("The HUB", "recreation"));
+        buildingList.add(new ListItem("Drumheller Fountain", "landmark"));
+        return buildingList;
     }
 
     /**

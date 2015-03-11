@@ -11,9 +11,9 @@ public class ListItem {
         this(item, "");
     }
 
-    public ListItem(String item, String subItem) {
+    public ListItem(String item, String icon) {
         this.buildingName = item;
-        this.icon = subItem;
+        this.icon = icon;
     }
 
     public void setBuildingName(String itemName) {
