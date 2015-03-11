@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,11 +26,13 @@ public class ListItemAdapter extends ArrayAdapter {
 
     @Override
     public View getView ( int position, View convertView, ViewGroup parent ) {
-        convertView = ( RelativeLayout ) inflater.inflate( resource, null );
+        convertView = (LinearLayout) inflater.inflate( resource, null );
         ListItem item = (ListItem) getItem( position );
 
-        TextView itemString = (TextView) convertView.findViewById(R.id.content);
-        itemString.setText(item.getItemName());
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.image);
+        imageView.setImageResource(R.drawable.logo);
+        TextView itemString = (TextView) convertView.findViewById(R.id.building_name);
+        itemString.setText(item.getBuildingName());
         return convertView;
     }
 }

@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity  {
         setContentView(R.layout.activity_maps);
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         // Register the listener with the Location Manager to receive location updates
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         Log.i("MapsActivity", "Lat: " + this.latitude + " Long: " + this.longitude);
         this.latitude = 47.655335;
         this.longitude = -122.30352;

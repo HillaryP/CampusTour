@@ -4,31 +4,31 @@ package edu.washington.prathh.campustour;
  * Created by hillaryprather on 1/29/15.
  */
 public class ListItem {
-    private String itemName;
-    private String subItem;
+    private String buildingName;
+    private String icon;
 
     public ListItem(String item) {
         this(item, "");
     }
 
     public ListItem(String item, String subItem) {
-        this.itemName = item;
-        this.subItem = subItem;
+        this.buildingName = item;
+        this.icon = subItem;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setBuildingName(String itemName) {
+        this.buildingName = itemName;
     }
 
-    public String getItemName() {
-        return this.itemName;
+    public String getBuildingName() {
+        return this.buildingName;
     }
 
-    public void setSubItem(String subItem) {
-        this.subItem = subItem;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
-    public String getSubItem() {
-        return this.subItem;
+    public String getIcon() {
+        return this.icon;
     }
 }
