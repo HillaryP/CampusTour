@@ -1,7 +1,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/framelayout" >
+    android:id="@+id/framelayout"
+    android:background="@drawable/cherry_small"
+    android:backgroundTint="#8cd0d0d0"
+    android:backgroundTintMode="src_atop">
 
     <LinearLayout
         android:orientation="vertical"
