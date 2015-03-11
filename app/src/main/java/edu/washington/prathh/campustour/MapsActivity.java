@@ -1,5 +1,6 @@
 package edu.washington.prathh.campustour;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -18,6 +19,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +34,7 @@ public class MapsActivity extends FragmentActivity  {
     private LocationManager locationManager;
     private double latitude;
     private double longitude;
+    private List<ListItem> buildingList;
 
     // Define a listener that responds to location updates
     private LocationListener locationListener = new LocationListener() {
@@ -50,8 +58,8 @@ public class MapsActivity extends FragmentActivity  {
         Log.i("MapsActivity", "Lat: " + this.latitude + " Long: " + this.longitude);
         this.latitude = 47.655335;
         this.longitude = -122.30352;
-        setUpMapIfNeeded();
         populateList();
+        setUpMapIfNeeded();
     }
 
     @Override
@@ -62,16 +70,47 @@ public class MapsActivity extends FragmentActivity  {
 
     public void populateList() {
         ListView listView = (ListView) findViewById(R.id.listView);
-        List<ListItem> buildingList = getNearbySites();
+        getNearbySites();
         listView.setAdapter(new ListItemAdapter(this, R.layout.list_item, buildingList));
     }
 
-    public List<ListItem> getNearbySites() {
-        List<ListItem> buildingList = new ArrayList<>();
-        buildingList.add(new ListItem("Mary Gates Hall", "hall"));
-        buildingList.add(new ListItem("The HUB", "recreation"));
-        buildingList.add(new ListItem("Drumheller Fountain", "landmark"));
-        return buildingList;
+    @TargetApi(19)
+    public void getNearbySites() {
+        this.buildingList = new ArrayList<>();
+        try {
+            JSONObject json = new JSONObject(loadJSONFromAsset());
+            JSONArray buildings = json.getJSONArray("buildings");
+            for (int i = 0; i < buildings.length(); i++) {
+                JSONObject building = buildings.getJSONObject(i);
+                double lat = building.getDouble("latitude");
+                double lon = building.getDouble("longitude");
+                double diff = Math.abs(lat - this.latitude) / Math.abs(lon - this.longitude);
+                Log.i("MapsActivity", building.getString("building_name") + " diff from current location: " + diff);
+                if (diff < 0.5) {
+                    buildingList.add(new ListItem(building.getString("building_name"),
+                            building.getString("category"),
+                            lat, lon));
+                }
+            }
+        } catch (Exception e) {
+            Log.e("MapsActivity", e.toString() + " " + e.getLocalizedMessage());
+        }
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("info.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
     /**
@@ -106,7 +145,12 @@ public class MapsActivity extends FragmentActivity  {
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(this.latitude, this.longitude))
                 .title("Your current location"));
+        for (ListItem point : buildingList) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(point.getLat(), point.getLon()))
+                    .title(point.getBuildingName()));
+        }
         LatLng coords = new LatLng(this.latitude, this.longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 11.0f)); // 17.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 14.0f)); // 17.0f));
     }
 }

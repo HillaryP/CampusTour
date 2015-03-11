@@ -1,0 +1,70 @@
+{
+    "buildings": [
+    {
+		"building_name": "Mary Gates Hall (MGH)",
+        "category": "hall",
+        "latitude": 47.654929,
+        "longitude": -122.3078075,
+        "facts": [
+            {"fact": "MGH is home to the University of Washington's world-class iSchool, but also hosts a series of other departments."},
+            {"fact": "Curious about jobs? You'll find answers at the career center here!"},
+            {"fact": "The CLUE tutoring center is located in this hall."}
+        ]
+    },
+    {
+        "building_name": "Husky Union Building (HUB)",
+        "category": "recreation",
+        "latitude": 47.6653454,
+        "longitude": -122.3208684,
+        "facts": [
+            {"fact": "MGH is home to the University of Washington's iSchool, but also hosts a series of other departments."},
+            {"fact": "Curious about jobs? You'll find answers at the career center here!"},
+            {"fact": "The CLUE tutoring center is located in this hall."}
+        ]
+    },
+    {
+        "building_name": "Drumheller Fountain",
+        "category": "landmark",
+        "latitude": 47.6538068,
+        "longitude": -122.3078081,
+        "facts": [
+            {"fact": "Once every year, a duck ramp is built at the fountain so baby ducks can climb in and out."},
+            {"fact": "This beautiful icon of the UW campus has been around since 1981."},
+            {"fact": "It is against state law to clip the roses surrounding Drumheller Fountain."}
+        ]
+    },
+    {
+        "building_name": "Burke Museum",
+        "category": "recreation",
+        "latitude": 47.660678,
+        "longitude": -122.310592,
+        "facts": [
+            {"fact": "The Burke Museum is home to over 6 million artifacts (only some of which are on display)"},
+            {"fact": "The Burke Museum is currently home to the original mask that inspired the Seahawks logo."},
+            {"fact": "Make sure the check out the delicious cafe downstairs!"},
+            {"fact": "Entrace to the Burke is free for UW students, so there's no reason to NOT check it out!"}
+        ]
+    },
+    {
+        "building_name": "Paccar Hall",
+        "category": "hall",
+        "latitude": 47.659126,
+        "longitude": -122.308582,
+        "facts": [
+            {"fact": "Paccar Hall is home to the prestigious Foster School of Business."},
+            {"fact": "Paccar Hall was lucky enough to have the first Starbucks franchise store on campus!"},
+            {"fact": "Dempsey Hall, connected to Paccar, is the newest hall on campus. This is a nice juxtaposition to Denny, right next door: the oldest building on campus."}
+        ]
+    },
+    {
+        "building_name": "The Liberal Arts Quadrangle (The Quad)",
+        "category": "landmark",
+        "latitude": 47.657265,
+        "longitude": -122.307227,
+        "facts": [
+            {"fact": "Expect to see students lounging on the grass, playing in the trees, or throwing Frisbees out here on a sunny day!"},
+            {"fact": "The iconic cherry trees were donated to the UW from our sister school in Japan."}
+        ]
+    }
+    ]
+}
