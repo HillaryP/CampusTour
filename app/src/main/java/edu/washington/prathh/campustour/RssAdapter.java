@@ -3,6 +3,7 @@ package edu.washington.prathh.campustour;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class RssAdapter extends BaseAdapter {
 			holder.itemTitle = (TextView) convertView.findViewById(R.id.itemTitle);
             holder.descTitle = (TextView) convertView.findViewById(R.id.itemDesc);
             holder.itemDate = (TextView) convertView.findViewById(R.id.itemDate);
+            holder.icon = (WebView) convertView.findViewById(R.id.event_icon);
             //holder.moreInfo = (TextView) convertView.findViewById(R.id.itemLink);
 			convertView.setTag(holder);
 		} else {
@@ -51,20 +53,7 @@ public class RssAdapter extends BaseAdapter {
 		holder.itemTitle.setText(currItem.getTitle());
         holder.itemDate.setText(currItem.getDate());
         holder.descTitle.setText(currItem.getDescription());
-
-//        SpannableString ss = new SpannableString(
-//                "More Info");
-//
-//        ss.setSpan(new StyleSpan(Typeface.BOLD), 0, 9,
-//                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        ss.setSpan(new URLSpan(currItem.getLink()), 0, 9,
-//                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//
-//
-//
-//        //holder.moreInfo.setText(Html.fromHtml("<a href=\"" + currItem.getLink() + "\">More Info</a> "));
-//        holder.moreInfo.setText(ss);
-//        holder.moreInfo.setMovementMethod(LinkMovementMethod.getInstance());
+        holder.icon.loadData("<html><body><img src=\""+ currItem.getImageUrl() +"\" width=\"50\"/></body></html>", "text/html", null);
 		return convertView;
 	}
 
@@ -72,6 +61,7 @@ public class RssAdapter extends BaseAdapter {
 		TextView itemTitle;
         TextView descTitle;
         TextView itemDate;
+        WebView icon;
         //TextView moreInfo;
 	}
 

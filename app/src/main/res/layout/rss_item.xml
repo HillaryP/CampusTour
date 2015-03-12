@@ -1,80 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="7dp"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/title"
-            android:text="@string/title"
-            android:textSize="18sp"
-            android:layout_weight=".75"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/itemTitle"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".3"
-            android:layout_gravity="top" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/dateLabel"
-            android:text="@string/date"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".75" />
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/itemDate"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight=".3" />
-    </LinearLayout>
-    <LinearLayout
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:orientation="horizontal"
-    android:layout_marginBottom="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/descLabel"
-            android:text="@string/desc"
-            android:textSize="18sp"
-            android:layout_width="fill_parent"
+    <WebView
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/event_icon"/>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_weight=".75" />
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/itemDesc"
-            android:textSize="18sp"
             android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="7dp"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/title"
+                android:text="@string/title"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#271C4C"
+                android:textStyle="bold" />
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/itemTitle"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:textColor="#ff2b2b2b" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_weight=".3" />
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/dateLabel"
+                android:text="@string/date"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#271C4C"
+                android:textStyle="bold" />
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/itemDate"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ff2b2b2b" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="5dp"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/descLabel"
+                android:text="@string/desc"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#271C4C"
+                android:textStyle="bold" />
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/itemDesc"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ff2b2b2b" />
+        </LinearLayout>
     </LinearLayout>
-
-        <!--<TextView-->
-            <!--android:id="@+id/itemLink"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text="@string/more_info"-->
-            <!--android:layout_gravity="end"-->
-            <!--android:textSize="18sp"-->
-            <!--android:gravity="end"-->
-            <!--android:autoLink="web" />-->
 </LinearLayout>
-
