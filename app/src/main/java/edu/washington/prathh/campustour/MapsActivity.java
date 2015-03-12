@@ -120,7 +120,7 @@ public class MapsActivity extends FragmentActivity implements
                 double lon = building.getDouble("longitude");
                 double diff = Math.abs(lat - this.latitude) / Math.abs(lon - this.longitude);
                 Log.i("MapsActivity", building.getString("building_name") + " diff from current location: " + diff);
-                if (diff < 0.25) {
+                if (diff < 25) {
                     JSONArray factJSON = building.getJSONArray("facts");
                     ArrayList<String> factoids = new ArrayList<>();
                     for (int j = 0; j < factJSON.length(); j++) {

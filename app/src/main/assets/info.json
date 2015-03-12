@@ -65,6 +65,49 @@
             {"fact": "Expect to see students lounging on the grass, playing in the trees, or throwing Frisbees out here on a sunny day!"},
             {"fact": "The iconic cherry trees were donated to the UW from our sister school in Japan."}
         ]
+    },
+    {
+        "building_name": "Suzzallo Library",
+        "category": "library",
+        "latitude": 47.655697,
+        "longitude": -122.30753,
+        "facts": [
+            {"fact": "In 1915, when Henry Suzzallo was appointed President of the University, a new library building became one of his top priorities. When planning began in 1922, Suzzallo envisioned a library that was to be the soul of the university."},
+            {"fact": "The Suzzallo Reading Room measures 65 feet high, 52 feet wide, and 250 feet long."},
+            {"fact": "The Grand Stair Hall also houses one of the world's biggest books, a series of photographs of Bhutan by Michael Hawley."}
+        ]
+    },
+    {
+        "building_name": "Intramural Activities Building (IMA)",
+        "category": "recreation",
+        "latitude": 47.653804,
+        "longitude": -122.301728,
+        "facts": [
+            {"fact": "The IMA Center for intramural sports was built in 1968."},
+            {"fact": "Statistically, the IMA's 8 busiest days of the year are in the beginning of January. During this time, they expect almost 6,000 visitors per day!"},
+            {"fact": "UW students love to participate in intramural sports leagues to meet fun new people and blow off some steam."}
+        ]
+    },
+    {
+        "building_name": "Sylvan Grove",
+        "category": "landmark",
+        "latitude": 47.652746,
+        "longitude": -122.306311,
+        "facts": [
+            {"fact": "These columns used to stand at the entrance to the first Washington Territorial University, built in 1861."},
+            {"fact": "Replicas of these very columns grace the stage at Commencement and Freshman Convocation as symbols of the ties that bind us."}
+        ]
+    },
+    {
+        "building_name": "Husky Stadium",
+        "category": "recreation",
+        "latitude": 47.6508,
+        "longitude": -122.301361,
+        "facts": [
+            {"fact": "Husky Stadium has been home to the Dawgs since 1920, hosting our home games. It sat 30,000 at the time."},
+            {"fact": "The stadium has gone through four remodels since then to expand seat capacity, up to the current capacity of 72,500."},
+            {"fact": "Because the stadium is so close to beautiful Lake Washington, Dawg fans can (and frequently do) enjoy tailgating by boat."}
+        ]
     }
     ]
 }
