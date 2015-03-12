@@ -1,18 +1,19 @@
 package edu.washington.prathh.campustour;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,45 +25,42 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity  {
+public class MapsActivity extends FragmentActivity implements
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+    public static final String TAG = MapsActivity.class.getSimpleName();
     private GoogleMap mMap;
-    private LocationManager locationManager;
+    private LocationRequest mLocationRequest;
     private double latitude;
     private double longitude;
     private List<ListItem> buildingList;
-
-    // Define a listener that responds to location updates
-    private LocationListener locationListener = new LocationListener() {
-        public void onLocationChanged(Location location) {
-            MapsActivity.this.latitude = location.getLatitude();
-            MapsActivity.this.longitude = location.getLongitude();
-        }
-
-        public void onStatusChanged(String provider, int status, Bundle extras) {}
-        public void onProviderEnabled(String provider) {}
-        public void onProviderDisabled(String provider) {}
-    };
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        // Register the listener with the Location Manager to receive location updates
-        //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
         Log.i("MapsActivity", "Lat: " + this.latitude + " Long: " + this.longitude);
-        this.latitude = 47.655335;
-        this.longitude = -122.30352;
-        populateList();
+        Log.i("MapsActivity", "latitude: " + this.latitude + " longitude: " + this.longitude);
         setUpMapIfNeeded();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+        mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(10 * 1000)        // 10 seconds, in milliseconds
+                .setFastestInterval(1 * 1000); // 1 second, in milliseconds
         ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                 .getMap().setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             public void onInfoWindowClick(Marker marker) {
@@ -92,6 +90,16 @@ public class MapsActivity extends FragmentActivity  {
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mGoogleApiClient.isConnected()) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            mGoogleApiClient.disconnect();
+        }
     }
 
     public void populateList() {
@@ -179,12 +187,57 @@ public class MapsActivity extends FragmentActivity  {
                 .position(new LatLng(this.latitude, this.longitude))
                 .title("Your current location")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        for (ListItem point : buildingList) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(point.getLat(), point.getLon()))
-                    .title(point.getBuildingName()));
+        if (buildingList != null) {
+            for (ListItem point : buildingList) {
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(point.getLat(), point.getLon()))
+                        .title(point.getBuildingName()));
+            }
         }
         LatLng coords = new LatLng(this.latitude, this.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 16.0f));
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (location == null) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+        else {
+            handleNewLocation(location);
+        }
+    }
+
+    private void handleNewLocation(Location location) {
+        Log.d(TAG, location.toString());
+        this.latitude = location.getLatitude();
+        this.longitude = location.getLongitude();
+        populateList();
+        setUpMap();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        Log.i(TAG, "Location services suspended. Please reconnect.");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        if (connectionResult.hasResolution()) {
+            try {
+                // Start an Activity that tries to resolve the error
+                connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+            } catch (IntentSender.SendIntentException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i(TAG, "Location services connection failed with code " + connectionResult.getErrorCode());
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        handleNewLocation(location);
     }
 }
