@@ -1,5 +1,8 @@
 package edu.washington.prathh.campustour;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by hillaryprather on 1/29/15.
  */
@@ -8,16 +11,18 @@ public class ListItem {
     private String icon;
     private double lat;
     private double lon;
+    private List<String> factoids;
 
     public ListItem(String item) {
-        this(item, "", 47.655335, -122.30352); // default is to middle of UW
+        this(item, "", 47.655335, -122.30352, new ArrayList<String>()); // default is to middle of UW
     }
 
-    public ListItem(String item, String icon, double lat, double lon) {
+    public ListItem(String item, String icon, double lat, double lon, List<String> factoids) {
         this.buildingName = item;
         this.icon = icon;
         this.lat = lat;
         this.lon = lon;
+        this.factoids = factoids;
     }
 
     public void setBuildingName(String itemName) {
@@ -42,5 +47,9 @@ public class ListItem {
 
     public double getLon() {
         return this.lon;
+    }
+
+    public List<String> getFactoids() {
+        return this.factoids;
     }
 }

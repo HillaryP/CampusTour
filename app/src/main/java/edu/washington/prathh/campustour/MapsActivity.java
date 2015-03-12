@@ -87,9 +87,16 @@ public class MapsActivity extends FragmentActivity  {
                 double diff = Math.abs(lat - this.latitude) / Math.abs(lon - this.longitude);
                 Log.i("MapsActivity", building.getString("building_name") + " diff from current location: " + diff);
                 if (diff < 0.5) {
+                    JSONArray factJSON = building.getJSONArray("facts");
+                    List<String> factoids = new ArrayList<>();
+                    for (int j = 0; j < factJSON.length(); j++) {
+                        factoids.add(factJSON.getJSONObject(j).getString("fact"));
+                    }
+                    Log.i("MapsActivity", building.getString("building_name") + " " + factoids.toString());
                     buildingList.add(new ListItem(building.getString("building_name"),
                             building.getString("category"),
-                            lat, lon));
+                            lat, lon,
+                            factoids));
                 }
             }
         } catch (Exception e) {
