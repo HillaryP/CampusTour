@@ -2,6 +2,7 @@ package edu.washington.prathh.campustour;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,7 +17,9 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -60,6 +63,29 @@ public class MapsActivity extends FragmentActivity  {
         this.longitude = -122.30352;
         populateList();
         setUpMapIfNeeded();
+        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                .getMap().setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            public void onInfoWindowClick(Marker marker) {
+                ArrayList<String> factoids = findFactoids(marker.getTitle());
+                if (factoids != null) {
+                    Intent intent = new Intent(MapsActivity.this, SiteInfo.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("building_name", marker.getTitle());
+                    bundle.putStringArrayList("factoids", factoids);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
+    public ArrayList<String> findFactoids(String title) {
+        for (ListItem i : buildingList) {
+            if (i.getBuildingName().equals(title)) {
+                return i.getFactoids();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -86,7 +112,7 @@ public class MapsActivity extends FragmentActivity  {
                 double lon = building.getDouble("longitude");
                 double diff = Math.abs(lat - this.latitude) / Math.abs(lon - this.longitude);
                 Log.i("MapsActivity", building.getString("building_name") + " diff from current location: " + diff);
-                if (diff < 15) {
+                if (diff < 0.25) {
                     JSONArray factJSON = building.getJSONArray("facts");
                     ArrayList<String> factoids = new ArrayList<>();
                     for (int j = 0; j < factJSON.length(); j++) {
@@ -151,13 +177,14 @@ public class MapsActivity extends FragmentActivity  {
     private void setUpMap() {
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(this.latitude, this.longitude))
-                .title("Your current location"));
+                .title("Your current location")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         for (ListItem point : buildingList) {
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(point.getLat(), point.getLon()))
                     .title(point.getBuildingName()));
         }
         LatLng coords = new LatLng(this.latitude, this.longitude);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 12.0f)); // 17.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coords, 16.0f));
     }
 }
