@@ -77,6 +77,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.washington.prathh.campustour.MainActivity" />
         </activity>
+        <activity
+            android:name=".SiteInfo"
+            android:label="@string/title_activity_site_info"
+            android:parentActivityName=".Content" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.washington.prathh.campustour.Content" />
+        </activity>
     </application>
 
 </manifest>

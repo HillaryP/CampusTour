@@ -11,13 +11,13 @@ public class ListItem {
     private String icon;
     private double lat;
     private double lon;
-    private List<String> factoids;
+    private ArrayList<String> factoids;
 
     public ListItem(String item) {
         this(item, "", 47.655335, -122.30352, new ArrayList<String>()); // default is to middle of UW
     }
 
-    public ListItem(String item, String icon, double lat, double lon, List<String> factoids) {
+    public ListItem(String item, String icon, double lat, double lon, ArrayList<String> factoids) {
         this.buildingName = item;
         this.icon = icon;
         this.lat = lat;
@@ -49,7 +49,7 @@ public class ListItem {
         return this.lon;
     }
 
-    public List<String> getFactoids() {
+    public ArrayList<String> getFactoids() {
         return this.factoids;
     }
 }
