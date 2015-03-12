@@ -50,10 +50,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GeoCameraActivity"
+            android:name=".WikiTude.GeoCameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".GeoCamContent"
+            android:name=".WikiTude.GeoCamContent"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".Content"
@@ -88,13 +88,22 @@
         </activity>
         <activity
             android:name=".EventsActivity"
-            android:label="@string/title_activity_events">
+            android:label="@string/title_activity_events" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.washington.prathh.campustour.MainActivity" />
         </activity>
-        <service android:name=".RssService"/>
 
+        <service android:name=".RssService" />
+
+        <activity
+            android:name=".Directions"
+            android:label="@string/title_activity_directions"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.washington.prathh.campustour.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
