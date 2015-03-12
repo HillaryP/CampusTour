@@ -21,6 +21,17 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Content.class);
+                intent.putExtra("event", false);
+                startActivity(intent);
+            }
+        });
+
+        Button events = (Button) findViewById(R.id.events);
+        events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Content.class);
+                intent.putExtra("event", true);
                 startActivity(intent);
             }
         });

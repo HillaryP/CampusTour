@@ -31,11 +31,15 @@ public class Content extends TabActivity {
         dir.setContent(new Intent(this, MapsActivity.class));
         TabHost.TabSpec navTab = tabHost.newTabSpec("Events");
         navTab.setIndicator("Events");
-        navTab.setContent(new Intent(this, MapsActivity.class));
+        navTab.setContent(new Intent(this, EventsActivity.class));
 
         tabHost.addTab(info);
         tabHost.addTab(dir);
         tabHost.addTab(navTab);
+
+        if (getIntent().getBooleanExtra("event", false)) {
+            tabHost.setCurrentTab(2);
+        }
     }
 
     @Override
