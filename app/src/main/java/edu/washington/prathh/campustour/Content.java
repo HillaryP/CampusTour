@@ -28,7 +28,7 @@ public class Content extends TabActivity {
         info.setContent(new Intent(this, MapsActivity.class));
         TabHost.TabSpec dir = tabHost.newTabSpec("Directions");
         dir.setIndicator("Directions");
-        dir.setContent(new Intent(this, MapsActivity.class));
+        dir.setContent(new Intent(this, Directions.class));
         TabHost.TabSpec navTab = tabHost.newTabSpec("Events");
         navTab.setIndicator("Events");
         navTab.setContent(new Intent(this, EventsActivity.class));

@@ -1,4 +1,4 @@
-package edu.washington.prathh.campustour;
+package edu.washington.prathh.campustour.WikiTude;
 
 import android.hardware.SensorManager;
 import android.location.LocationListener;
@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import com.wikitude.architect.ArchitectView.ArchitectUrlListener;
 import com.wikitude.architect.ArchitectView.SensorAccuracyChangeListener;
+
+import edu.washington.prathh.campustour.R;
 
 public class GeoCameraActivity extends AbstractArchitectCamActivity {
 
@@ -73,7 +75,7 @@ public class GeoCameraActivity extends AbstractArchitectCamActivity {
     @Override
     public float getInitialCullingDistanceMeters() {
         // you need to adjust this in case your POIs are more than 50km away from user here while loading or in JS code (compare 'AR.context.scene.cullingDistance')
-        return ArchitectViewHolderInterface.CULLING_DISTANCE_DEFAULT_METERS;
+        return CULLING_DISTANCE_DEFAULT_METERS;
     }
 
     @Override

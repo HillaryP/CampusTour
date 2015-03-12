@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
+import edu.washington.prathh.campustour.WikiTude.Constants;
+
 public class RssService extends IntentService {
 
 	private static final String RSS_LINK = "https://www.trumba.com/calendars/sea_campus.rss?days=7&filterview=No+Ongoing+Events&filter1=_410446_410447_417393_410450_410452_410449_664739_410454_410453_410456_422909_422910_426704_&filter5=_409198_&filterfield1=30073&filterfield5=30051";

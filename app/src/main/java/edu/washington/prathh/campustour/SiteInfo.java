@@ -82,6 +82,10 @@ public class SiteInfo extends Activity {
         mapping.put("Burke Museum", R.drawable.burke);
         mapping.put("Paccar Hall", R.drawable.paccar);
         mapping.put("The Liberal Arts Quadrangle (The Quad)", R.drawable.quad);
+        mapping.put("Suzzallo Library", R.drawable.suzzallo);
+        mapping.put("Intramural Activities Building (IMA)", R.drawable.ima);
+        mapping.put("Sylvan Grove", R.drawable.sylvan);
+        mapping.put("Husky Stadium", R.drawable.stadium);
         return mapping;
     }
 }

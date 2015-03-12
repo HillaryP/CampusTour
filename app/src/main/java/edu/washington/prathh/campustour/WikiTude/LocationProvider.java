@@ -1,4 +1,4 @@
-package edu.washington.prathh.campustour;
+package edu.washington.prathh.campustour.WikiTude;
 
 import android.content.Context;
 import android.location.Location;
@@ -6,7 +6,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.widget.Toast;
 
-import edu.washington.prathh.campustour.ArchitectViewHolderInterface.ILocationProvider;
+import edu.washington.prathh.campustour.WikiTude.ArchitectViewHolderInterface.ILocationProvider;
 
 /**
  * Sample implementation of a locationProvider, feel free to polish this very basic approach (compare http://goo.gl/pvkXV )

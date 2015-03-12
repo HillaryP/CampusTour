@@ -1,4 +1,4 @@
-package edu.washington.prathh.campustour;
+package edu.washington.prathh.campustour.WikiTude;
 
 import java.util.HashMap;
 

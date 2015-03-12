@@ -1,0 +1,45 @@
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/framelayout"
+    android:background="@drawable/cherry_small"
+    android:backgroundTint="#8cd0d0d0"
+    android:backgroundTintMode="src_atop"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"
+            android:padding="30dp"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Events"
+            android:id="@+id/events"
+            android:textSize="14pt"
+            android:background="#d2ffffff"
+            android:textColor="#ff514e51"
+            android:padding="10dp"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Interactive Map"
+            android:id="@+id/map"
+            android:textSize="14pt"
+            android:background="#d2ffffff"
+            android:textColor="#ff514e51"
+            android:padding="10dp" />
+
+    </LinearLayout>
+</FrameLayout>
