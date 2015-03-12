@@ -43,7 +43,7 @@ public class RssAdapter extends BaseAdapter {
 			holder.itemTitle = (TextView) convertView.findViewById(R.id.itemTitle);
             holder.descTitle = (TextView) convertView.findViewById(R.id.itemDesc);
             holder.itemDate = (TextView) convertView.findViewById(R.id.itemDate);
-            holder.icon = (WebView) convertView.findViewById(R.id.event_icon);
+            //holder.icon = (WebView) convertView.findViewById(R.id.event_icon);
             //holder.moreInfo = (TextView) convertView.findViewById(R.id.itemLink);
 			convertView.setTag(holder);
 		} else {
@@ -53,7 +53,7 @@ public class RssAdapter extends BaseAdapter {
 		holder.itemTitle.setText(currItem.getTitle());
         holder.itemDate.setText(currItem.getDate());
         holder.descTitle.setText(currItem.getDescription());
-        holder.icon.loadData("<html><body><img src=\""+ currItem.getImageUrl() +"\" width=\"50\"/></body></html>", "text/html", null);
+        //holder.icon.loadData("<html><body><img src=\""+ currItem.getImageUrl() +"\" width=\"50\"/></body></html>", "text/html", null);
 		return convertView;
 	}
 

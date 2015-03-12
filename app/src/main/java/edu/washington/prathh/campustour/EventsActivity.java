@@ -8,6 +8,7 @@ import android.os.ResultReceiver;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,11 +31,14 @@ public class EventsActivity extends FragmentActivity {
             listView = (ListView) findViewById(R.id.listView);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
+
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Log.i("TAG", "Set listener");
                     RssAdapter adapter = (RssAdapter) parent.getAdapter();
                     RssItem item = (RssItem) adapter.getItem(position);
                     Uri uri = Uri.parse(item.getLink());
+                    Log.i("TAG", item.getLink());
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }

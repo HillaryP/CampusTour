@@ -33,11 +33,11 @@ public class RssItem {
         if (desc != null && desc.length() > 0) {
             // desc = Html.fromHtml(desc.replaceAll("<img.+?>", "")).toString();
             html = desc;
-            Document doc = Jsoup.parse(html);
-            org.jsoup.nodes.Element image = doc.select("img").first();
-            if (image != null) {
-                imgUrl = image.attr("href");
-            }
+//            Document doc = Jsoup.parse(html);
+//            org.jsoup.nodes.Element image = doc.select("img").first();
+//            if (image != null) {
+//                imgUrl = image.attr("href");
+//            }
 
             desc = Html.fromHtml(desc.replaceAll("<img.+?>", "")).toString();
             int startInfo = desc.indexOf("Campus location:");

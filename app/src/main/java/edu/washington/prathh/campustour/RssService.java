@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
-import edu.washington.prathh.campustour.WikiTude.Constants;
+import edu.washington.prathh.campustour.Constants;
 
 public class RssService extends IntentService {
 

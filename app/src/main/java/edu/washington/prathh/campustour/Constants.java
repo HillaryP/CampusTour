@@ -1,4 +1,4 @@
-package edu.washington.prathh.campustour.WikiTude;
+package edu.washington.prathh.campustour;
 
 public class Constants {
 
