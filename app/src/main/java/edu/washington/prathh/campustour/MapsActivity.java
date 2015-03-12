@@ -44,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements
     private double longitude;
     private List<ListItem> buildingList;
     private GoogleApiClient mGoogleApiClient;
+    private Marker currentMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,9 +119,10 @@ public class MapsActivity extends FragmentActivity implements
                 JSONObject building = buildings.getJSONObject(i);
                 double lat = building.getDouble("latitude");
                 double lon = building.getDouble("longitude");
-                double diff = Math.abs(lat - this.latitude) / Math.abs(lon - this.longitude);
+                double diff = Math.sqrt( Math.abs(lat - this.latitude) * Math.abs(lat - this.latitude) +
+                        Math.abs(lon - this.longitude) *  Math.abs(lon - this.longitude));
                 Log.i("MapsActivity", building.getString("building_name") + " diff from current location: " + diff);
-                if (diff < 0.25) {
+                if (diff < 0.003) {
                     JSONArray factJSON = building.getJSONArray("facts");
                     ArrayList<String> factoids = new ArrayList<>();
                     for (int j = 0; j < factJSON.length(); j++) {
@@ -183,7 +185,12 @@ public class MapsActivity extends FragmentActivity implements
     }
 
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions()
+        if (currentMarker != null) {
+            currentMarker.remove();
+
+        }
+
+        this.currentMarker = mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(this.latitude, this.longitude))
                 .title("Your current location")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));

@@ -20,5 +20,7 @@
     <string name="more_info">More Info</string>
     <string name="title_activity_events">EventsActivity</string>
     <string name="title_activity_directions">Directions</string>
+    <string name="where_to">Where do you want to go?</string>
+    <string name="search">SEARCH</string>
 
 </resources>

@@ -16,7 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
-            android:src="@drawable/trans_bckground_logo" />
+            android:src="@drawable/trans_bckground_logo"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
 
         <Button
             android:layout_width="fill_parent"

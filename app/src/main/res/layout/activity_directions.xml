@@ -23,14 +23,14 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/editText"
-            android:hint="Where do you want to go?"
+            android:hint="@string/where_to"
             android:layout_weight="0.40"/>
 
         <Button
             style="@style/Widget.AppCompat.ActionButton.CloseMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SEARCH"
+            android:text="@string/search"
             android:id="@+id/search"
             android:layout_weight="0.60"
             android:onClick="search" />
